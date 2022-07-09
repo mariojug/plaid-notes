@@ -1,9 +1,17 @@
+
 public: build
-	setopt extendedglob;	\
+	mkdir temp; \
 	cd public; \
-	rm -rf -- ^electron.js -- ^favicon.ico -- ^index.html; \
+	cp electron.js ../temp; \
+	cp favicon.ico ../temp; \
+	cp index.html ../temp; \
 	cd ..; \
-	mv -f build/* public/
+	rm -rf public; \
+	mv build public; \
+	cd public; \
+	cp ../temp/* .; \
+	cd ..; \
+	rm -rf temp; \
 
 build: clean
 	yarn build
